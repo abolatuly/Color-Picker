@@ -1,0 +1,66 @@
+{% include "header.html" %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <h1 data-aos="fade-up">Upload the image to pick a color...</h1>
+        <h2 data-aos="fade-up" data-aos-delay="400">Use the online image color picker below to select a color and get
+          the HEX color code value and RGB value. </h2>
+        <div data-aos="fade-up" data-aos-delay="600">
+          <div class="text-center text-lg-start">
+            <a href="#services" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+              <span>Get Started</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+        <img src="{{ url_for('static', filename='assets/img/color-palette.png') }}" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+
+    <div class="container" data-aos="fade-up">
+
+      <header class="section-header">
+        <h2>Services</h2>
+        <p>Upload the image</p>
+      </header>
+
+      <div class="row gy-4 mx-6">
+
+        <div class="mb-3">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+          {% endwith %}
+          <form action="/color-palette" method="post" enctype="multipart/form-data">
+            <label for="formFile" class="form-label">Use Your Image</label>
+            <input class="form-control" type="file" id="formFile" name="file">
+            <button type="submit" value="Upload" class="btn btn-primary float-end mt-3">Upload</button>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- End Services Section -->
+
+</main><!-- End #main -->
+
+{% include "footer.html" %}

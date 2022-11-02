@@ -1,0 +1,64 @@
+{% include "header.html" %}
+<main id="main">
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+
+    <div class="container" data-aos="fade-up">
+
+      <header class="section-header">
+        <h2>Services</h2>
+        <p>Color Palette</p>
+      </header>
+
+      <div class="row mx-6 mb-5 py-4 d-flex justify-content-center content_box" >
+        <img class="mb-4 main_img" src="{{ image }}" alt="User Image">
+        <div class="color_row d-flex justify-content-center">
+          {% if colors %}
+            {% for color in colors %}
+              <div class="color_square" title="Click to copy" style="background-color: rgb{{ color }};"
+                   onclick='navigator.clipboard.writeText("{{ color }}");'>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+
+      <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-2 gy-4 mx-6 pb-4
+      d-flex justify-content-center content_box" >
+        {% for color in colors %}
+        <div class="col">
+          <div class="color_sample" style="background-color: rgb{{ color }};">
+          </div>
+          <div class="color_info">
+
+            <div class="input-group mt-2">
+              <span class="color_code input-group-text">HEX</span>
+              <div class="color_code form-control">{{ '#%02x%02x%02x' % color }}</div>
+              <button class="color_code btn btn-outline-secondary" type="button"
+                      onclick='navigator.clipboard.writeText("{{ "#%02x%02x%02x" % color }}");'>
+                <i class="color_code bi bi-clipboard2"></i>
+              </button>
+            </div>
+            <div class="input-group mt-2">
+              <span class="color_code input-group-text">RGB</span>
+              <div class="color_code form-control">{{ color }}</div>
+              <button class="color_code btn btn-outline-secondary" type="button"
+                      onclick='navigator.clipboard.writeText("{{ color }}");'>
+                <i class="color_code bi bi-clipboard2"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+    </div>
+
+  </section><!-- End Services Section -->
+
+</main><!-- End #main -->
+{% include "footer.html" %}
